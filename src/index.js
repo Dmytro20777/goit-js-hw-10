@@ -12,7 +12,7 @@ export function fetchCatByBreed(breedId) {
 }
 
 
-import { fetchBreeds, fetchCatByBreed } from "./index.js";
+// import { fetchBreeds, fetchCatByBreed } from "./index.js";
 
 const breedSelect = document.querySelector(".breed-select");
 const loader = document.querySelector(".loader");
