@@ -1,25 +1,12 @@
-import axios from "axios";
 
-axios.defaults.headers.common["x-api-key"] = "live_w8GphQHxvyjgTctJKibWFc1C00Y93S8M7hkKzih4uzut8CbV6ubLjteRkKyR6Qed";
-
-
-export function fetchBreeds() {
-  return axios.get("https://api.thecatapi.com/v1/breeds");
-}
-
-export function fetchCatByBreed(breedId) {
-  return axios.get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`);
-}
-
-
-// import { fetchBreeds, fetchCatByBreed } from "./index.js";
+import { fetchBreeds, fetchCatByBreed } from "../src/js/cat-api.js"
 
 const breedSelect = document.querySelector(".breed-select");
 const loader = document.querySelector(".loader");
 const error = document.querySelector(".error");
 const catInfo = document.querySelector(".cat-info");
 
-// Fetch and populate breeds select
+
 function populateBreedsSelect(breeds) {
   breeds.forEach((breed) => {
     const option = document.createElement("option");
@@ -29,7 +16,7 @@ function populateBreedsSelect(breeds) {
   });
 }
 
-// Fetch breeds on page load
+
 function loadBreeds() {
   loader.style.display = "block";
   breedSelect.style.display = "none";
@@ -48,7 +35,7 @@ function loadBreeds() {
     });
 }
 
-// Fetch and display cat information on breed selection
+
 function displayCatInfo() {
   const selectedBreedId = breedSelect.value;
 
@@ -63,7 +50,7 @@ function displayCatInfo() {
       const description = catData.breeds[0].description;
       const temperament = catData.breeds[0].temperament;
 
-      // Display cat information
+
       catInfo.innerHTML = `
         <h3>${breedName}</h3>
         <p><strong>Description:</strong> ${description}</p>
@@ -81,10 +68,10 @@ function displayCatInfo() {
     });
 }
 
-// Event listener for breed selection change
+
 breedSelect.addEventListener("change", displayCatInfo);
 
-// Initialize the app
+
 loadBreeds();
 
 
